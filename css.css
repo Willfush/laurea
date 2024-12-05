@@ -170,37 +170,30 @@ button:active{
 
 @media (max-width: 400px){
     body {
-        padding: 20px;
+        padding: 15px;
     }
     /* TITLE */
     .TitleBlurContainer{
         display: flex;
-        height: max-content;
-        width: 100%;
-        align-self: center;
-        text-align: center;
-        justify-content: center;
-        background: rgba(34,40,49,0.4);
-        backdrop-filter: blur(20px);
-        margin-bottom: 0px;
-        padding: 10px;
-        border-radius: 30px;
+        transform: translate(0px,35px);
+        padding: 5px 20px;
+        border: 2px solid gray;
     }
 
     .firstTitle{
-        font-size: 17px;
+        font-size: 24px;
     }
     /* BUTTON */
     .buttonContainer {
-        width: 200px;
-        height: 200px;
-        transform: translate(-15px, -40px);
-        box-shadow: 14px 14px 0px 14px #222831;
+        width: 210px;
+        height: 210px;
+        transform: translate(-10px, -40px);
+        box-shadow: 15px 15px 0px 15px #222831;
     }
 
     button {
-        width:  132px;
-        height: 132px;
+        width:  145px;
+        height: 145px;
         box-shadow: 10px 10px 0px 10px #8e0413;
     }
 
@@ -209,8 +202,8 @@ button:active{
     }
 
     img{
-        height: 110px;
-        width: 110px;
+        height: 120px;
+        width: 120px;
     }
 }
 
@@ -237,7 +230,7 @@ button:active{
         margin-bottom: 0px;
         padding: 10px;
         border-radius: 30px;
-        border: 2px solid ;
+        border: 2px solid gray;
     }
 
     .firstTitle{

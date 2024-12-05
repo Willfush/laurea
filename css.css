@@ -13,7 +13,7 @@ body{
     height: 100%;
     width: 100%;
     padding: 50px 200px 50px;
-    background-image: url(Prova.jpg);
+    background-image: url(Images/Prova.jpg);
 }
 
 .parentContainer{
@@ -113,7 +113,21 @@ button:active{
     display: none;
 }
 
-/* RESPONSIVE 480px (PHONES) */
+@media (max-width: 280px){
+    body{
+        background: red;
+        background-image: none;
+    }
+}
+
+@media (max-width: 300px){
+    body{
+        background: blue;
+        background-image: none;
+    }
+}
+
+/* RESPONSIVE 480px (BIG PHONES) */
 
 @media (max-width: 480px) {
     body {

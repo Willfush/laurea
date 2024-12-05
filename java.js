@@ -14,6 +14,8 @@ Button.addEventListener('click', function(){
             video.mozRequestFullScreen(); // Per Firefox
         } else if (video.msRequestFullscreen) {
             video.msRequestFullscreen(); // Per Internet Explorer/Edge
+        } else if (video.webkitEnterFullscreen) {
+            video.webkitEnterFullscreen(); // Richiama la modalità schermo intero su iOS
         }
     }, 700);
 });
@@ -40,8 +42,15 @@ document.addEventListener('webkitfullscreenchange', function () {
     }
 });
 
+const video = document.getElementById('myVideo');
+
+video.addEventListener('webkitendfullscreen', () => {
+    // Nascondi il video una volta usciti dalla modalità schermo intero
+    video.style.display = 'none';
+});
+
 document.getElementById('myVideo').addEventListener('ended', function () {
     setTimeout(() => {
         window.location.href = "secondo.html"; // Cambia l'URL con quello desiderato
-    }, 1500);
+    }, 1000);
 });

@@ -13,7 +13,7 @@ body{
     height: 100%;
     width: 100%;
     padding: 50px 200px 50px;
-    background-image: url(Prova.jpg);
+    background-image: url(Images/Prova.jpg);
 }
 
 .parentContainer{
@@ -75,7 +75,7 @@ img{
 }
 
 .buttonWrapper{
-     position: relative; /* Isola il pulsante dal contenitore */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,3 +112,48 @@ button:active{
     border-radius: 20px;
     display: none;
 }
+
+/* RESPONSIVE 480px (PHONES) */
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px;
+    }
+
+    .TitleBlurContainer{
+        display: flex;
+        height: max-content;
+        width: 100%;
+        align-self: center;
+        text-align: center;
+        justify-content: center;
+        background: rgba(34,40,49,0.4);
+        backdrop-filter: blur(20px);
+        margin-bottom: 0px;
+        padding: 10px;
+        border-radius: 30px;
+        border: 2px solid ;
+    }
+
+    .firstTitle{
+        font-size: 31px;
+    }
+
+    .buttonContainer {
+        width: 400px;
+        height: 400px;
+        transform: translate(-15px, -40px);
+    }
+
+    button {
+        width:  266px;
+        height: 266px;
+    }
+
+    img{
+        height: 200px;
+        width: 200px;
+    }
+
+}
+

@@ -37,7 +37,7 @@ body{
     margin-bottom: 50px;
     padding: 10px;
     border-radius: 30px;
-    border: 2px solid white;
+    border: 2px solid gray;
 }
 
 .firstTitle{
@@ -113,21 +113,12 @@ button:active{
     display: none;
 }
 
-@media (max-width: 300px){
-    body{
-        background: red;
-        background-image: none;
-    }
-}
 
-@media (max-width: 400px){
-    body{
-        background: blue;
-        background-image: none;
-    }
-}
 
-/* RESPONSIVE 480px (BIG PHONES)
+
+
+
+/* RESPONSIVE 480px (BIG PHONES) */
 
 @media (max-width: 480px) {
     body {
@@ -169,5 +160,105 @@ button:active{
         width: 200px;
     }
 
-} */
+}
+
+
+
+
+
+/* RESPONSIVE 400PX (MY PHONE) */
+
+@media (max-width: 400px){
+    body {
+        padding: 20px;
+    }
+    /* TITLE */
+    .TitleBlurContainer{
+        display: flex;
+        height: max-content;
+        width: 100%;
+        align-self: center;
+        text-align: center;
+        justify-content: center;
+        background: rgba(34,40,49,0.4);
+        backdrop-filter: blur(20px);
+        margin-bottom: 0px;
+        padding: 10px;
+        border-radius: 30px;
+    }
+
+    .firstTitle{
+        font-size: 17px;
+    }
+    /* BUTTON */
+    .buttonContainer {
+        width: 200px;
+        height: 200px;
+        transform: translate(-15px, -40px);
+        box-shadow: 14px 14px 0px 14px #222831;
+    }
+
+    button {
+        width:  132px;
+        height: 132px;
+        box-shadow: 10px 10px 0px 10px #8e0413;
+    }
+
+    .buttonWrapper{
+        transform: translate(-8px, -8px);
+    }
+
+    img{
+        height: 110px;
+        width: 110px;
+    }
+}
+
+
+
+
+
+    /* PHONE 300PX */
+
+@media (max-width: 300px){
+    body {
+        padding: 20px;
+    }
+
+    .TitleBlurContainer{
+        display: flex;
+        height: max-content;
+        width: 100%;
+        align-self: center;
+        text-align: center;
+        justify-content: center;
+        background: rgba(34,40,49,0.4);
+        backdrop-filter: blur(20px);
+        margin-bottom: 0px;
+        padding: 10px;
+        border-radius: 30px;
+        border: 2px solid ;
+    }
+
+    .firstTitle{
+        font-size: 31px;
+    }
+
+    .buttonContainer {
+        width: 400px;
+        height: 400px;
+        transform: translate(-15px, -40px);
+    }
+
+    button {
+        width:  266px;
+        height: 266px;
+    }
+
+    img{
+        height: 200px;
+        width: 200px;
+    }
+}
+
 

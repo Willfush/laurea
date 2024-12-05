@@ -168,7 +168,7 @@ button:active{
 
 /* RESPONSIVE 400PX (MY PHONE) */
 
-@media (max-width: 400px){
+@media (max-width: 500px){
     body {
         padding: 15px;
     }

@@ -4,7 +4,7 @@ Button.addEventListener('click', function(){
     setTimeout(() => {  
         document.getElementById('myVideo').style.display = "flex";  
 
-//        const video = document.getElementById('myVideo')
+        const video = document.getElementById('myVideo')
 
 //        if (video.requestFullscreen) {
 //            video.requestFullscreen(); // Per la maggior parte dei browser
@@ -12,10 +12,9 @@ Button.addEventListener('click', function(){
 //            video.webkitRequestFullscreen(); // Per Safari
 //        } else if (video.mozRequestFullScreen) {
 //           video.mozRequestFullScreen(); // Per Firefox
-//        } else if (video.msRequestFullscreen) {
-//            video.msRequestFullscreen(); // Per Internet Explorer/Edge //       } else if (video.webkitEnterFullscreen) {
-//          video.webkitEnterFullscreen(); // Richiama la modalità schermo intero su iOS
-      //  }
+        if (video.webkitEnterFullscreen) {
+            video.webkitEnterFullscreen(); // Richiama la modalità schermo intero su iOS
+        }
     }, 700);
 });
 

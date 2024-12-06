@@ -2,7 +2,7 @@ let Button = document.getElementById('showVideoButton')
 
 Button.addEventListener('click', function(){
     setTimeout(() => {  
-        document.getElementById('videoContainer').style.display = "flex";  
+        document.getElementById('myVideo').style.display = "flex";  
 
         const video = document.getElementById('myVideo')
 
@@ -20,43 +20,43 @@ Button.addEventListener('click', function(){
     }, 700);
 });
 
-document.addEventListener('fullscreenchange', function(){
-    const video = document.getElementById('myVideo');
+// document.addEventListener('fullscreenchange', function(){
+//     const video = document.getElementById('myVideo');
 
-    if (!document.fullscreenElement) {
-        // Se non siamo più in fullscreen, nascondi il video
-        video.style.display = "none";
-        video.pause();
-        video.currentTime = 0; // Reset del video
-    }
-});
+//     if (!document.fullscreenElement) {
+//         // Se non siamo più in fullscreen, nascondi il video
+//         video.style.display = "none";
+//         video.pause();
+//         video.currentTime = 0; // Reset del video
+//     }
+// });
 
-// Supporto per altri browser
-document.addEventListener('webkitfullscreenchange', function () {
+// // Supporto per altri browser
+// document.addEventListener('webkitfullscreenchange', function () {
     
-    const video = document.getElementById('myVideo')
+//     const video = document.getElementById('myVideo')
 
-    if (!document.webkitFullscreenElement) {
-        video.style.display = "none";
-        video.pause();
-        video.currentTime = 0;
-    }
-});
+//     if (!document.webkitFullscreenElement) {
+//         video.style.display = "none";
+//         video.pause();
+//         video.currentTime = 0;
+//     }
+// });
 
-document.addEventListener('webkitfullscreenchange', function () {
+// document.addEventListener('webkitfullscreenchange', function () {
     
-    const video = document.getElementById('myVideo')
+//     const video = document.getElementById('myVideo')
 
-    if (!document.webkitDisplayingFullscreen) {
-        video.style.display = "none";
-        video.pause();
-        video.currentTime = 0;
-    }
-});
+//     if (!document.webkitDisplayingFullscreen) {
+//         video.style.display = "none";
+//         video.pause();
+//         video.currentTime = 0;
+//     }
+// });
 
 
-document.getElementById('myVideo').addEventListener('ended', function () {
-    setTimeout(() => {
-        window.location.href = "secondo.html"; // Cambia l'URL con quello desiderato
-    }, 1000);
-});
+// document.getElementById('myVideo').addEventListener('ended', function () {
+//     setTimeout(() => {
+//         window.location.href = "secondo.html"; // Cambia l'URL con quello desiderato
+//     }, 1000);
+// });

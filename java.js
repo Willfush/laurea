@@ -42,15 +42,15 @@ document.addEventListener('webkitfullscreenchange', function () {
     }
 });
 
-document.addEventListener('webkitfullscreenchange', function(){
-    const video = document.getElementById('myVideo');
+document.addEventListener('webkitfullscreenchange', function () {
+    
 
-    if (!document.webkitEnterFullscreen) {
+    if (!document.webkitDisplayingFullscreen) {
         video.style.display = "none";
         video.pause();
         video.currentTime = 0;
     }
-})
+});
 
 
 document.getElementById('myVideo').addEventListener('ended', function () {

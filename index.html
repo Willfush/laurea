@@ -30,7 +30,7 @@
     <button id="show-video-button">Guarda Video</button>
     <div id="video-container">
         <video id="video" controls>
-            <source src="Edna720.mp4" type="video/mp4">
+            <source src="video.mp4" type="video/mp4">
             Il tuo browser non supporta il tag video.
         </video>
     </div>
@@ -40,44 +40,46 @@
         const videoContainer = document.getElementById("video-container");
         const video = document.getElementById("video");
 
-        // Mostra il video e entra in modalità schermo intero
+        // Funzione per entrare in modalità schermo intero
+        function enterFullscreen(element) {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.webkitRequestFullscreen) { // Safari
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) { // IE/Edge
+                element.msRequestFullscreen();
+            }
+        }
+
+        // Funzione per verificare se siamo in fullscreen
+        function isFullscreen() {
+            return (
+                document.fullscreenElement ||
+                document.webkitFullscreenElement ||
+                document.msFullscreenElement
+            );
+        }
+
+        // Mostra il video e avvia in modalità schermo intero
         button.addEventListener("click", () => {
             videoContainer.style.display = "block";
             video.play();
-
-            if (video.requestFullscreen) {
-                video.requestFullscreen();
-            } else if (video.webkitRequestFullscreen) { // Safari
-                video.webkitRequestFullscreen();
-            } else if (video.msRequestFullscreen) { // IE/Edge
-                video.msRequestFullscreen();
-            }
+            enterFullscreen(video);
         });
 
-        // Nascondi il video quando si esce dallo schermo intero
-        document.addEventListener("fullscreenchange", () => {
-            if (!document.fullscreenElement) {
+        // Controlla l'uscita dallo schermo intero e nasconde il video
+        function handleFullscreenChange() {
+            if (!isFullscreen()) {
                 videoContainer.style.display = "none";
                 video.pause();
                 video.currentTime = 0; // Reset del video
             }
-        });
+        }
 
-        document.addEventListener("webkitfullscreenchange", () => {
-            if (!document.webkitFullscreenElement) {
-                videoContainer.style.display = "none";
-                video.pause();
-                video.currentTime = 0; // Reset del video
-            }
-        });
-
-        document.addEventListener("msfullscreenchange", () => {
-            if (!document.msFullscreenElement) {
-                videoContainer.style.display = "none";
-                video.pause();
-                video.currentTime = 0; // Reset del video
-            }
-        });
+        // Aggiungi gli eventi per gestire i cambiamenti di stato fullscreen
+        document.addEventListener("fullscreenchange", handleFullscreenChange);
+        document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+        document.addEventListener("msfullscreenchange", handleFullscreenChange);
     </script>
 </body>
 </html>

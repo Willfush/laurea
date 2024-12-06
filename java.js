@@ -50,5 +50,5 @@ video.addEventListener("ended", function () {
         video.style.display = "none"; // Nasconde il video al termine
         videoContainer.style.display = "none"; // Nasconde il contenitore
         window.location.href = "secondo.html"; // Cambia l'URL con quello desiderato
-    }, 1000);
+    }, 750);
 });

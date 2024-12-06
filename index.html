@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,12 +26,11 @@
         }
     </style>
 </head>
-
 <body>
     <button id="show-video-button">Guarda Video</button>
     <div id="video-container">
         <video id="video" controls>
-            <source src="Edna720.mp4" type="video/mp4">
+            <source src="video.mp4" type="video/mp4">
             Il tuo browser non supporta il tag video.
         </video>
     </div>
@@ -41,6 +39,8 @@
         const button = document.getElementById("show-video-button");
         const videoContainer = document.getElementById("video-container");
         const video = document.getElementById("video");
+
+        let checkFullscreenInterval;
 
         // Funzione per entrare in modalità schermo intero
         function enterFullscreen(element) {
@@ -67,22 +67,18 @@
             videoContainer.style.display = "block";
             video.play();
             enterFullscreen(video);
+
+            // Avvia un intervallo per verificare lo stato del fullscreen
+            checkFullscreenInterval = setInterval(() => {
+                if (!isFullscreen()) {
+                    // Esci dal fullscreen
+                    videoContainer.style.display = "none";
+                    video.pause();
+                    video.currentTime = 0; // Reset video
+                    clearInterval(checkFullscreenInterval); // Ferma il controllo
+                }
+            }, 200); // Controllo ogni 200ms
         });
-
-        // Controlla l'uscita dallo schermo intero e nasconde il video
-        function handleFullscreenChange() {
-            if (!isFullscreen()) {
-                videoContainer.style.display = "none";
-                video.pause();
-                video.currentTime = 0; // Reset del video
-            }
-        }
-
-        // Aggiungi gli eventi per gestire i cambiamenti di stato fullscreen
-        document.addEventListener("fullscreenchange", handleFullscreenChange);
-        document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-        document.addEventListener("msfullscreenchange", handleFullscreenChange);
     </script>
 </body>
-
 </html>

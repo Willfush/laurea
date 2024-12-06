@@ -2,7 +2,7 @@ let Button = document.getElementById('showVideoButton')
 
 Button.addEventListener('click', function(){
     setTimeout(() => {  
-        document.getElementById('myVideo').style.display = "flex";  
+        document.getElementById('videoContainer').style.display = "flex";  
 
         const video = document.getElementById('myVideo')
 

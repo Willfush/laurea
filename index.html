@@ -1,84 +1,32 @@
-<!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bottone Video</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-
-        #video-container {
-            display: none;
-            position: relative;
-        }
-
-        video {
-            width: 100%;
-            max-width: 800px;
-            height: auto;
-        }
-    </style>
+    <title>I did it!</title>
+    <link rel="stylesheet" href="css.css">
 </head>
 <body>
-    <button id="show-video-button">Guarda Video</button>
-    <div id="video-container">
-        <video id="video" controls>
-            <source src="video.mp4" type="video/mp4">
-            Il tuo browser non supporta il tag video.
-        </video>
+    <div class="parentContainer">
+        <div class="TitleBlurContainer">
+            <h1 class="firstTitle">
+                Il riassunto perfetto di questi anni.
+            </h1>
+        </div> 
+
+        <div class="centerContainer">
+            <div class="buttonContainer">
+                <div class="buttonWrapper">
+                    <button id="showVideoButton"><img src="Images/toga/hat.png" alt=""></button>
+                </div>
+            </div>    
+        </div>
+
+        <div id="videoContainer">
+            <video id="myVideo" width="800" controls>
+                <source src="Video/Edna720.mp4" type="video/mp4">
+            </video>
+        </div>
     </div>
-
-    <script>
-        const button = document.getElementById("show-video-button");
-        const videoContainer = document.getElementById("video-container");
-        const video = document.getElementById("video");
-
-        let checkFullscreenInterval;
-
-        // Funzione per entrare in modalità schermo intero
-        function enterFullscreen(element) {
-            if (element.requestFullscreen) {
-                element.requestFullscreen();
-            } else if (element.webkitRequestFullscreen) { // Safari
-                element.webkitRequestFullscreen();
-            } else if (element.msRequestFullscreen) { // IE/Edge
-                element.msRequestFullscreen();
-            }
-        }
-
-        // Funzione per verificare se siamo in fullscreen
-        function isFullscreen() {
-            return (
-                document.fullscreenElement ||
-                document.webkitFullscreenElement ||
-                document.msFullscreenElement
-            );
-        }
-
-        // Mostra il video e avvia in modalità schermo intero
-        button.addEventListener("click", () => {
-            videoContainer.style.display = "block";
-            video.play();
-            enterFullscreen(video);
-
-            // Avvia un intervallo per verificare lo stato del fullscreen
-            checkFullscreenInterval = setInterval(() => {
-                if (!isFullscreen()) {
-                    // Esci dal fullscreen
-                    videoContainer.style.display = "none";
-                    video.pause();
-                    video.currentTime = 0; // Reset video
-                    clearInterval(checkFullscreenInterval); // Ferma il controllo
-                }
-            }, 200); // Controllo ogni 200ms
-        });
-    </script>
 </body>
+    <script src="java.js"></script>
 </html>

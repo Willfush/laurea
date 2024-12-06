@@ -1,113 +1,48 @@
-var bool_isFullscreen = false;
+const button = document.getElementById("showVideoButton");
+const videoContainer = document.getElementById("videoContainer");
+const video = document.getElementById("myVideo");
 
-//# access DIV that is container for [ video + button image ].
-var myVideoGIF = document.getElementById("myVideo");
+let checkFullscreenInterval;
 
-//# access DIV that is a click "hotspot" to enter fullscreen.
-var myBtn_FS = document.getElementById("showVideoButton");
-
-//# access IMG for button that will change mode to fullscreen.
-//var img_myBtn_FS; //# = document.getElementById("img_btn_fs");
-
-myBtn_FS.addEventListener('click', function(){
-    document.getElementById('myVideo').style.display = "flex";
-})
-
-window.addEventListener('fullscreenchange', on_FS_Change, false);
-
-function on_FS_Change(evt) {
-  //######################################
-  //# detect event for screen mode change
-  //#is "null" when page/element is not in Fullscreen
-if (document.fullscreenElement != null) {
-    bool_isFullscreen = true;
-}
-
-  //# assume is already in Fullscreen mode
-else {
-    bool_isFullscreen = false;
-    exit_FullScreen();
-}
-
-}
-
-function go_FullScreen(input) {
-  //# NOTE : child elements are in order of appearance in setup
-  //# Parent == DIV as container
-    children[0] == VIDEO; 
-    children[1] == DIV;
-
-
-
-
-  //##############################################################
-  //## Get access to the specific clicked item's Parent (container)
-myVideoGIF = document.getElementById(input.parentNode.id);
-myBtn_FS = myVideoGIF.children[1];
-
-
-
-  //########################################
-  //## Check if screen mode is : Fullscreen
-  //## If already Fullscreen then just do the "on exit fullscreen" code 
-  //## then quit (RETURN) from this function (ignores rest of code below)
-if (bool_isFullscreen == true) {
-    exit_FullScreen(); //# handle on exit fullscreen
-    return; //# quit/exit code here...
-}
-
-  //##############################################################
-  //## Will continue onto code below if NOT Fullscreen (no return)
-
-function openFullscreen(elem) {
-if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE11 */
-    elem.msRequestFullscreen();
-}
-} 
-
-openFullscreen(myVideoGIF);
-
-myVideoGIF.children[0].style.width = "100%"
-myVideoGIF.children[0].style.height = "100%"
-myVideoGIF.children[0].style.background = "transparent"
-
-  //# set to true (helps "exit_FullScreen" function )
-bool_isFullscreen = true;
-
-}
-
-function exit_FullScreen() {
-
-
-if (bool_isFullscreen == true) {
-    bool_isFullscreen = false;
-
-    //#########################################
-    //# check IF browser can use this method...
-    if (document.exitFullscreen) {
-    document.exitFullscreen()
-        .then(() => console.log("Document Exited from Full screen mode"))
-        .catch((err) => console.error(err));
-
-    myVideoGIF.children[0].style.background = "none"
-
-    }
-
-    //## OR ELSE try other browser options
-
-    /* for Safari */
-    else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
-    }
-
-    /* for IE11 */
-    else if (document.msExitFullscreen) {
-    document.msExitFullscreen();
+// Funzione per entrare in modalità schermo intero
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) { // Safari
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) { // IE/Edge
+        element.msRequestFullscreen();
     }
 }
 
+// Funzione per verificare se siamo in fullscreen
+function isFullscreen() {
+    return (
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.msFullscreenElement
+    );
 }
+
+// Mostra il video e avvia in modalità schermo intero
+button.addEventListener("click", () => {
+    videoContainer.style.display = "block";
+    video.play();
+    enterFullscreen(video);
+
+    checkFullscreenInterval = setInterval(() => {
+        if (!isFullscreen()) {
+            videoContainer.style.display = "none";
+            video.pause();
+            video.currentTime = 0; 
+            clearInterval(checkFullscreenInterval); 
+        }
+    }, 200); 
+});
+
+
+document.getElementById('myVideo').addEventListener('ended', function () {
+    setTimeout(() => {
+        window.location.href = "secondo.html"; // Cambia l'URL con quello desiderato
+    }, 1000);
+});

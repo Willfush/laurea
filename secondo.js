@@ -7,5 +7,5 @@ Button.addEventListener('click', function(){
 })
 
 Mun.addEventListener('click', function(){
-    window.href = "youtube.com";
+    window.location.replace("http://youtube.com");
 })

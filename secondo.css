@@ -60,11 +60,17 @@ h1{
 }
 
 .paragraph{
+    visibility: hidden;
     position: absolute;
     right: 10px;
     bottom: 10px;
     color: white;
 
+}
+
+.box{
+    width: 10px;
+    height: 10px;
 }
 
 

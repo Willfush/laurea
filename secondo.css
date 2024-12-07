@@ -8,7 +8,7 @@
 }
 
 body{
-    background-image: url(Prova.jpg);
+    background-image: url(Images/Prova.jpg);
     display: flex;
     height: 100%;
     width: 100%;
@@ -41,6 +41,22 @@ h1{
     border: 2px solid gray;
 }
 
+.button{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 40px;
+    margin-left: 40px;
+    font-family: "parkinsans";
+    padding: 20px;
+    font-size: 17px;
+    background: rgba(34,40,49,0.4);
+    backdrop-filter: blur(14px);
+    border: 2px solid gray;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+}
 
 
 

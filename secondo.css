@@ -60,7 +60,7 @@ h1{
 }
 
 .paragraph{
-    opacity: 0%;
+    opacity: 100%;
     cursor: default;
     position: absolute;
     right: 10px;

@@ -69,5 +69,5 @@ video.addEventListener("ended", function () {
         video.style.opacity = "0";
         videoContainer.style.display = "none";
         window.location.href = "secondo.html"; // Cambia l'URL con quello desiderato
-    }, 350);
+    }, 1000);
 });

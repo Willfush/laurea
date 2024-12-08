@@ -4,6 +4,16 @@ let i = 0;
 let startTime = null; // Memorizza il momento in cui inizia il conteggio dei clic
 let videoShown = false; // Per evitare che il video venga mostrato più di una volta
 
+document.addEventListener("DOMContentLoaded", () => {
+    // Controlla se è presente un parametro nell'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    if (!urlParams.has("reloaded")) {
+        // Aggiunge un parametro per evitare ricariche infinite
+        urlParams.set("reloaded", "true");
+        window.location.search = urlParams.toString();
+    }
+});
+
 Button.addEventListener('click', function () {
     window.location.href = "index.html"; // Reindirizza alla pagina index.html
 });

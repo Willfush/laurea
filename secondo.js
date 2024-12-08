@@ -58,6 +58,7 @@ function showVideo() {
         video.width = 640;
         video.height = 360;
         video.controls = true;
+        video.playsInline = true; // Necessario per iOS
 
         // Crea una source per il video
         let source = document.createElement('source');
@@ -70,6 +71,10 @@ function showVideo() {
         // Aggiungi il video al contenitore della pagina
         document.body.appendChild(video);
 
+        // Rendi visibile il video
+        video.style.display = 'block';
+        video.style.opacity = '1';
+
         // Avvia il video
         video.play();
 
@@ -77,10 +82,10 @@ function showVideo() {
         video.onplay = function () {
             if (video.requestFullscreen) {
                 video.requestFullscreen();
+            } else if (video.webkitEnterFullscreen) { // iOS Safari
+                video.webkitEnterFullscreen();
             } else if (video.mozRequestFullScreen) { // Firefox
                 video.mozRequestFullScreen();
-            } else if (video.webkitRequestFullscreen) { // Chrome, Safari, Opera
-                video.webkitRequestFullscreen();
             } else if (video.msRequestFullscreen) { // IE/Edge
                 video.msRequestFullscreen();
             }
@@ -93,8 +98,8 @@ function showVideo() {
                 video.pause(); // Metti in pausa il video
                 video.currentTime = 0; // Resetta il video
                 video.style.display = "none"; // Nascondi il video
-                videoShown = false;
                 video.remove(); // Rimuovi il video dal DOM
+                videoShown = false;  // Permetti di mostrare di nuovo il video
                 clearInterval(checkFullscreenInterval); // Ferma il controllo
             }
         }, 200);

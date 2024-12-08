@@ -3,7 +3,30 @@ let Mun = document.getElementById('serto');
 let i = 0;
 let startTime = null;  // Memorizza il momento in cui inizia il conteggio dei clic
 let videoShown = false;  // Per evitare che il video venga mostrato più di una volta
-let checkFullscreenInterval;
+let videoElement = null; // Mantieni un riferimento globale al video
+
+// Funzione per entrare in modalità schermo intero
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) { // Safari iOS
+        element.webkitRequestFullscreen();
+    } else if (element.mozRequestFullScreen) { // Firefox
+        element.mozRequestFullScreen();
+    } else if (element.msRequestFullscreen) { // IE/Edge
+        element.msRequestFullscreen();
+    }
+}
+
+// Funzione per verificare se siamo in fullscreen
+function isFullscreen() {
+    return (
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement
+    );
+}
 
 Button.addEventListener('click', function () {
     window.location.href = "index.html";  // Reindirizza alla pagina index.html
@@ -37,70 +60,56 @@ Mun.addEventListener('click', function () {
     }
 });
 
-// Funzione per verificare se siamo in modalità fullscreen
-function isFullscreen() {
-    return (
-        document.fullscreenElement ||
-        document.webkitFullscreenElement ||
-        document.mozFullScreenElement ||
-        document.msFullscreenElement
-    );
-}
-
 // Funzione per mostrare il video
 function showVideo() {
     if (!videoShown) {
         videoShown = true;  // Assicurati che il video venga mostrato una sola volta
 
-        // Crea un tag video
-        let video = document.createElement('video');
-        video.id = 'video';
-        video.width = 640;
-        video.height = 360;
-        video.controls = true;
-        video.playsInline = true; // Necessario per iOS
+        // Crea un elemento video solo se non esiste già
+        if (!videoElement) {
+            videoElement = document.createElement('video');
+            videoElement.id = 'video';
+            videoElement.width = 640;
+            videoElement.height = 360;
+            videoElement.controls = true;
 
-        // Crea una source per il video
-        let source = document.createElement('source');
-        source.src = 'background.mp4';
-        source.type = 'video/mp4';
+            // Crea una source per il video
+            let source = document.createElement('source');
+            source.src = 'background.mp4';
+            source.type = 'video/mp4';
 
-        // Aggiungi la source al video
-        video.appendChild(source);
+            // Aggiungi la source al video
+            videoElement.appendChild(source);
 
-        // Aggiungi il video al contenitore della pagina
-        document.body.appendChild(video);
+            // Aggiungi il video al corpo del documento
+            document.body.appendChild(videoElement);
+        }
 
-        // Rendi visibile il video
-        video.style.display = 'block';
-        video.style.opacity = '1';
+        // Assicura che il video sia visibile
+        videoElement.style.display = "block";
+        videoElement.style.opacity = "1";
 
-        // Avvia il video
-        video.play();
+        // Riproduci il video
+        const playPromise = videoElement.play();
 
-        // Mette il video a schermo intero
-        video.onplay = function () {
-            if (video.requestFullscreen) {
-                video.requestFullscreen();
-            } else if (video.webkitEnterFullscreen) { // iOS Safari
-                video.webkitEnterFullscreen();
-            } else if (video.mozRequestFullScreen) { // Firefox
-                video.mozRequestFullScreen();
-            } else if (video.msRequestFullscreen) { // IE/Edge
-                video.msRequestFullscreen();
-            }
-        };
+        if (playPromise !== undefined) {
+            playPromise
+                .then(() => {
+                    enterFullscreen(videoElement); // Entra in modalità fullscreen
+                })
+                .catch((error) => {
+                    console.error("Errore durante l'avvio del video:", error);
+                });
+        }
 
-        // Controlla lo stato fullscreen
-        checkFullscreenInterval = setInterval(() => {
+        // Controlla costantemente lo stato fullscreen
+        const checkFullscreenInterval = setInterval(() => {
             if (!isFullscreen()) {
-                // Esci dalla modalità fullscreen
-                video.pause(); // Metti in pausa il video
-                video.currentTime = 0; // Resetta il video
-                video.style.display = "none"; // Nascondi il video
-                video.remove(); // Rimuovi il video dal DOM
-                videoShown = false;  // Permetti di mostrare di nuovo il video
+                videoElement.pause(); // Metti in pausa il video
+                videoElement.currentTime = 0; // Resetta il video
+                videoElement.style.display = "none"; // Nascondi il video
                 clearInterval(checkFullscreenInterval); // Ferma il controllo
+                videoShown = false; // Permetti di rivedere il video
             }
         }, 200);
     }

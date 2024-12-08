@@ -33,21 +33,20 @@ button.addEventListener("click", () => {
     video.style.display = "block";
     video.style.opacity = "1";
 
-    // Ripristina lo stato del video
+    // Azzera il video
     video.pause();
     video.currentTime = 0;
 
-    // Avvia immediatamente il video
+    // Avvia il video
     const playPromise = video.play();
 
     if (playPromise !== undefined) {
         playPromise
             .then(() => {
-                enterFullscreen(video); // Entra in modalità fullscreen solo dopo che il video ha iniziato a riprodursi
+                enterFullscreen(video); // Entra in modalità fullscreen solo se il video inizia a riprodursi
             })
             .catch((error) => {
                 console.error("Errore durante l'avvio del video:", error);
-                alert("Bubbu"); // Messaggio per l'utente
             });
     }
 
@@ -70,5 +69,5 @@ video.addEventListener("ended", function () {
         video.style.opacity = "0";
         videoContainer.style.display = "none";
         window.location.href = "secondo.html"; // Cambia l'URL con quello desiderato
-    }, 1000);
+    }, 350);
 });

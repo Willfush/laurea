@@ -4,6 +4,17 @@ const video = document.getElementById("myVideo");
 
 let checkFullscreenInterval;
 
+// Ricarica la pagina appena si accede
+document.addEventListener("DOMContentLoaded", () => {
+    // Controlla se è presente un parametro nell'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    if (!urlParams.has("reloaded")) {
+        // Aggiunge un parametro per evitare ricariche infinite
+        urlParams.set("reloaded", "true");
+        window.location.search = urlParams.toString();
+    }
+});
+
 // Funzione per entrare in modalità schermo intero
 function enterFullscreen(element) {
     if (element.requestFullscreen) {
@@ -69,5 +80,5 @@ video.addEventListener("ended", function () {
         video.style.opacity = "0";
         videoContainer.style.display = "none";
         window.location.href = "secondo.html"; // Cambia l'URL con quello desiderato
-    }, 1000);
+    }, 350);
 });

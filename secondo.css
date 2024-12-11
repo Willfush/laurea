@@ -59,7 +59,7 @@ h1{
     cursor: pointer;
 }
 
-.paragraph{
+p{
     opacity: 100%;
     cursor: default;
     position: absolute;

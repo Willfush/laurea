@@ -58,7 +58,7 @@ function showVideo() {
 
         // Crea una source per il video
         let source = document.createElement('source');
-        source.src = 'background.mp4'; 
+        source.src = 'Background.mp4'; 
         source.type = 'video/mp4';
 
         // Aggiungi la source al video
